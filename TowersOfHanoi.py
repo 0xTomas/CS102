@@ -59,14 +59,25 @@ class Stack:
     def get_name(self):
         return self.name
 
-    def print_items(self):
+    def print_items1(self):
+        pointer = self.top_item
+        print_list = []
+        while (pointer):
+            print_list.append(pointer.get_value())
+            pointer = pointer.get_next_node()
+
+        return "{0} Stack: ".format(self.get_name())
+        #print("{0} Stack:\n {1}".format(self.get_name(), print_list))
+
+
+    def print_items2(self):
         pointer = self.top_item
         print_list = []
         while (pointer):
             print_list.append(pointer.get_value())
             pointer = pointer.get_next_node()
         print_list.reverse()
-        print("{0} Stack: {1}".format(self.get_name(), print_list))
+        return "{}".format(print_list)
 
 
 print("\nLet's play Towers of Hanoi!!")
@@ -82,7 +93,7 @@ stacks.append(middle_stack)
 stacks.append(right_stack)
 
 # Set up the Game
-num_disks = int(input("\nHow many disks do you want to play with?\n"))
+num_disks = int(input("\nHow many disks do you want to play with? \n"))
 while num_disks < 3:
     num_disks = int(input("\nEnter a number greater than or equal to 3. \n"))
 
@@ -106,7 +117,7 @@ def get_input():
             letter = choices[i]
             print("Enter {letter} for {name}.".format(letter=letter, name=name))
 
-        user_input = input("")
+        user_input = input("").upper()
 
         if user_input in choices:
             for i in range(len(stacks)):
@@ -119,10 +130,16 @@ def get_input():
 num_user_moves = 0
 
 while (right_stack.get_size() != num_disks):
-    print("\n\n\n... Current Stacks ...")
+    print("\n\n\n... Current Stacks ...\n")
+    left1 = left_stack.print_items1()
+    left2 = left_stack.print_items2()
+    mid1 = middle_stack.print_items1()
+    mid2 = middle_stack.print_items2()
+    right1 = right_stack.print_items1()
+    right2 = right_stack.print_items2()
 
-    for stack in stacks:
-        stack.print_items()
+    print(left1, mid1, right1)
+    print(left2, "       ", mid2, "        ", right2)
 
     while True:
         print("\nWhich stack do you want to move from?\n")
