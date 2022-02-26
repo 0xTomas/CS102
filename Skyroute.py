@@ -29,7 +29,6 @@ def goodbye():
 def skyroute():
     greet()
     new_route()
-
     goodbye()
 
 
@@ -58,8 +57,9 @@ def get_start():
     start_point_letter = input("Where are you coming from? Type in the corresponding letter: ")
     if start_point_letter in landmark_choices:
         start_point = landmark_choices[start_point_letter]
-        return start_point
         print(f"You are coming from {start_point}.")
+        return start_point
+
     else:
         print("Sorry, that's not a landmark we have data on. Let's try this again...")
         get_start()
@@ -80,7 +80,7 @@ def new_route(start_point=None, end_point=None):
     start_point, end_point = set_start_and_end(start_point, end_point)
     shortest_route = get_route(start_point, end_point)
     if shortest_route is not None:
-        shortest_route_string = "\n".join(shortest_route)
+        shortest_route_string = " -> ".join(shortest_route)
         print(f"The shortest metro route from {start_point} to {end_point} is: \n{shortest_route_string}")
 
     else:
